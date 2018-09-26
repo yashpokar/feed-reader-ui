@@ -1,20 +1,53 @@
+import Form from './../components/Form'
 import React, { Component } from 'react'
 
 export default class Home extends Component {
-	readRssFeeds = e => {
-		e.preventDefault();
-
-		console.log('cool')
+	state = {
+		feeds: {},
+		gotFeeds: false,
 	}
 
+	/**
+	 * When form component will recive feeds
+	 * @param  {Object} feeds
+	 * @return {null}
+	 */
+	onFeedsReceive = feeds => this.setState({ feeds, gotFeeds: true })
+
     render () {
+    	const feeds = this.state.feeds;
+
     	return (
     		<div className="container">
-				<form className="rss-feed__form" onSubmit={ this.readRssFeeds }>
-	    			<input type="url" className="rss-feed__input" placeholder="Enter url (eg. http://feeds.bbci.co.uk/news/rss.xml)"/>
+    			{
+    				! this.state.gotFeeds ?
+    					<Form onFeedsReceive={ this.onFeedsReceive } /> :
+    					<div className="container">
+    						<header className="feeds-header">
+    							<img src={feeds.meta.image} alt={feeds.meta.title} className="feeds-header__image"/>
 
-	    			<button type="submit" className="rss-feed__button">Read Feeds</button>
-				</form>
+    							<h2 className="feeds-header__title">
+    								<a href={feeds.meta.link} className="feeds-header__link">
+    									{feeds.meta.title}
+    								</a>
+    							</h2>
+    						</header>
+
+    						<div className="feeds-body">
+    							{
+    								feeds.items.map((feed, i) =>
+    									<div className="feed-item" key={i}>
+    										{
+    											feed.map((item, i) => {
+    												return <p key={i}>{item.tag}: {item.text}</p>
+    											})
+    										}
+    									</div>
+    								)
+    							}
+    						</div>
+    					</div>
+    			}
     		</div>
     	)
     }
