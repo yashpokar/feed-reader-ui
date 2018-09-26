@@ -7,6 +7,7 @@
 	color: #666;
 }
 
+.feed-item__link,
 a:link {
 	text-decoration: underline;
 	color: #3498db !important;
@@ -96,6 +97,33 @@ a:link {
 }
 
 .feeds-body {
-	width: 100%;
+	width: 90%;
+	margin: auto;
 	margin-top: 20px;
+}
+
+.feed-item {
+	cursor: pointer;
+	padding: 10px;
+	margin-top: 5px;
+	box-shadow: 2px 4px 4px rgba(0, 0, 0, .05);
+	transition: all 200ms ease-in-out;
+}
+
+.feed-item:hover {
+	transform: scale(1.005);
+}
+
+.feed-item:last-child {
+	margin-bottom: 15px;
+}
+
+.feed-item__title {
+	font-size: 1rem;
+}
+
+.feed-item__description {
+	color: #999;
+	margin-top: 5px;
+	font-size: .95rem;
 }

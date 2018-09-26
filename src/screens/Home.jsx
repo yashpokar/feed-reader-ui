@@ -1,4 +1,5 @@
 import Form from './../components/Form'
+import Feed from './../components/Feed'
 import React, { Component } from 'react'
 
 export default class Home extends Component {
@@ -34,17 +35,7 @@ export default class Home extends Component {
     						</header>
 
     						<div className="feeds-body">
-    							{
-    								feeds.items.map((feed, i) =>
-    									<div className="feed-item" key={i}>
-    										{
-    											feed.map((item, i) => {
-    												return <p key={i}>{item.tag}: {item.text}</p>
-    											})
-    										}
-    									</div>
-    								)
-    							}
+    							{ feeds.items.map((items, i) => <Feed key={i} items={items} />) }
     						</div>
     					</div>
     			}
