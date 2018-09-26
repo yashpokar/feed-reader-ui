@@ -22,22 +22,26 @@ export default class Home extends Component {
     		<div className="container">
     			{
     				! this.state.gotFeeds ?
-    					<Form onFeedsReceive={ this.onFeedsReceive } /> :
-    					<div className="container">
-    						<header className="feeds-header">
-    							<img src={feeds.meta.image} alt={feeds.meta.title} className="feeds-header__image"/>
+					<Form onFeedsReceive={ this.onFeedsReceive } /> :
+					<div className="container">
+						<header className="feeds-header">
+							<button
+								className="button-back"
+								onClick={ () => this.setState({ feeds: {}, gotFeeds: false }) }>Go Back</button>
 
-    							<h2 className="feeds-header__title">
-    								<a href={feeds.meta.link} className="feeds-header__link">
-    									{feeds.meta.title}
-    								</a>
-    							</h2>
-    						</header>
+							<img src={feeds.meta.image} alt={feeds.meta.title} className="feeds-header__image"/>
 
-    						<div className="feeds-body">
-    							{ feeds.items.map((items, i) => <Feed key={i} items={items} />) }
-    						</div>
-    					</div>
+							<h2 className="feeds-header__title">
+								<a href={feeds.meta.link} className="feeds-header__link">
+									{feeds.meta.title}
+								</a>
+							</h2>
+						</header>
+
+						<div className="feeds-body">
+							{ feeds.items.map((items, i) => <Feed key={i} items={items} />) }
+						</div>
+					</div>
     			}
     		</div>
     	)

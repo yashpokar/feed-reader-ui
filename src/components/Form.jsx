@@ -25,7 +25,7 @@ export default class Form extends Component {
 					onChange={ e => this.setState({ url: e.target.value }) }
 					type="url"
 					className="rss-feed__input"
-					placeholder="Enter url (eg. http://feeds.bbci.co.uk/news/rss.xml)"/>
+					placeholder="Enter Rss Feed Url"/>
 
 					<button
 					type="submit"
